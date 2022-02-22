@@ -4,6 +4,12 @@ import lombok.Data;
 
 import javax.persistence.*;
 
+
+/* аннотации, которые используются в стандарте JPA и в различных фреймворках вроде Hibernate(кроме).
+ * @Entity – Указывает, что данный бин (класс) является сущностью.
+ * @Table – указывает на имя таблицы, которая будет отображаться в этой сущности.
+ * @id - id колонки
+ * @GeneratedValue - указывает, что данное свойство будет создаваться согласно указанной стратегии.*/
 @Data
 @Entity
 @Table(name = "pip_point")
@@ -54,6 +60,7 @@ public class Point {
         isInArea = inArea;
     }
 
+    /* метод который делает ответ более простым чтобы вернуть его на клиент */
     public AnswerPoint convertToSimplePoint(){
         return new AnswerPoint(x,y,r,isInArea);
     }

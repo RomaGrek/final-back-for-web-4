@@ -12,12 +12,21 @@ import java.security.Principal;
 
 @RestController
 public class UserController {
-
+    /* @Autowired - Используя эту аннотацию, не нужно заботиться о том, как лучше всего передать классу
+     или bean'у экземпляр другого bean'a. Фреймворк Spring сам найдет нужный bean и подставит
+      его значение в свойство, которое отмечено аннотацией @Autowired.
+       */
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
     @Autowired
     private UserService userService;
 
+    /* Аннотация @RequestMapping используется для мапинга (связывания) с URL для
+     всего класса или для конкретного метода обработчика.
+     ResponseEntity - Это специальный класс, который представляет http-ответ.
+      Он содержит тело ответа, код состояния, заголовки. Мы можем использовать его
+      для более тонкой настройки http-ответа.
+    Он является универсальным типом, и можно использовать любой объект в качестве тела:*/
     @CrossOrigin
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ResponseEntity<?> createUser(@RequestBody User user) {

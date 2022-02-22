@@ -14,19 +14,30 @@ import java.util.Collection;
 @RestController
 public class PointController {
 
+    /* объявляем объекты интерфейсов репозиториев */
     private final PointRepository pointRepository;
     private final UserRepository userRepository;
 
+
+    /* обыяный конструктор с параметрами */
     PointController(PointRepository pointRepository, UserRepository userRepository) {
         this.pointRepository = pointRepository;
         this.userRepository = userRepository;
     }
 
 
-
+    /* @CrossOrigin - Cross-Origin Resource Sharing (CORS) — это концепция безопасности,
+     которая позволяет ограничивать ресурсы, реализованные в веб-браузерах. Это предотвращает
+      создание или использование кода JavaScript запросов различного происхождения.
+      @PostMapping - @PostMapping -это составная аннотация, которая действует как ярлык для
+      @RequestMapping(method = RequestMethod.POST) .@PostMapping аннотированные методы
+      обрабатывают запросы HTTP POST, соответствующие заданным URI expression. , например
+      Principal - это пользователь, вошедший в систему в данный момент. Однако вы извлекаете
+       его через контекст безопасности, который привязан к текущему потоку, и как таковой он
+       также привязан к текущему запросу и его сеансу.*/
     @CrossOrigin
     @PostMapping("/result")
-    Collection<AnswerPoint> allPoints(Principal user) {
+    Collection<AnswerPoint> allPoints(Principal user) {             // метод для получение инфы о точках пользователя (таблица)
         System.out.println("Get point of user: "+user.getName());
         Collection<AnswerPoint> collection = new ArrayList<>();
         for (Point point:pointRepository.findByUser(userRepository.findByUsername(user.getName()))) {

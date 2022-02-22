@@ -2,6 +2,8 @@ package main.web.entity;
 
 import lombok.Data;
 
+
+/* класс обьект которого используется для отправки ответа на клиент */
 @Data
 public class AnswerPoint {
 
